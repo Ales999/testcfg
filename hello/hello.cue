@@ -1,0 +1,1 @@
+Appmode: bool | *false
