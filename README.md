@@ -3,7 +3,7 @@
 
 ```bash
 $ encore version
-encore version v1.46.20
+encore version v1.46.22
 ```
 
 ```bash
@@ -14,11 +14,19 @@ $ docker run -e PORT=8081 -p 8081:8081 tst-config:tstconf
 Check:
 
 ```bash
-$ curl 'localhost:8081/hello/user'
+$ curl 'localhost:8081/hello/tstuser'
 {
   "code": "internal",
-  "message": "panic handling request: runtime error: invalid memory address or nil pointer dereference",
+  "message": "configuration not initialized",
   "details": null
 }
 ```
 
+If running local as ```encore run``` and using the default config, it should return:
+
+```bash
+$ curl 'localhost:4000/hello/tstuser'
+{
+  "Message": "Config work FALSE, tstuser!"
+}
+```
