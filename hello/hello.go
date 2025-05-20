@@ -22,9 +22,24 @@ var cfg *AppConfig = config.Load[*AppConfig]()
 
 //encore:api public path=/hello/:name
 func World(ctx context.Context, name string) (*Response, error) {
+	//check ctx
+	if ctx == nil {
+		return &Response{}, errs.B().Code(errs.Internal).Msg("context is nil").Err()
+	}
+
+	// check name parameter is empty or not.
+	if name == "" {
+		return &Response{}, errs.B().Code(errs.InvalidArgument).Msg("name is empty").Err()
+	}
+
+	// Example filter for invalid characters in the name:
+	// if !regexp.MustCompile(`[^a-zA-Z0-9]`).ReplaceAllString(name, "") == name {
+	// 	return &Response{}, errs.B().Code(errs.InvalidArgument).Msg("invalid character in name").Err()
+	// }
+
 	// Check if configuration is initialized
 	if cfg == nil {
-		return &Response{}, errs.B().Code(errs.Internal).Msg("configuration not initialized").Err()
+		return &Response{}, errs.B().Code(errs.Internal).Msg("configuration not loaded").Err()
 	}
 
 	// Determine configuration mode
