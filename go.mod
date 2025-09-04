@@ -1,5 +1,5 @@
 module encore.app
 
-go 1.24.2
+go 1.25.0
 
-require encore.dev v1.46.1
+require encore.dev v1.48.13
