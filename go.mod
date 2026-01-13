@@ -2,4 +2,4 @@ module encore.app
 
 go 1.25.4
 
-require encore.dev v1.48.13
+require encore.dev v1.52.1
